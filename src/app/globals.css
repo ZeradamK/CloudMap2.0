@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Hover effect for code syntax lines */
+.syntax-line:hover {
+  background-color: rgba(66, 153, 225, 0.08) !important;
+  transition: background-color 0.2s ease;
+}
+
+/* Input container styles - removing glow effects */
+.input-container {
+  position: relative;
+}
+
+/* Generate tooltip styles */
+.generate-tooltip {
+  position: absolute;
+  bottom: -36px;
+  right: 5px;
+  background-color: white;
+  border: 0.2px solid rgba(0, 0, 0, 0.7);
+  border-radius: 6px;
+  padding: 6px 12px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease;
+  z-index: 10;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transform: translateY(2px);
+}
+
+.tooltip-visible {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
+}
+
+/* Dots animation */
+.dot-animation {
+  display: inline-block;
+  min-width: 15px;
+  position: relative;
+}
+
+.dot-animation::after {
+  content: "";
+  animation: dotAnimation 1.5s infinite;
+  position: absolute;
+}
+
+@keyframes dotAnimation {
+  0%, 20% { content: "."; }
+  40%, 60% { content: ".."; }
+  80%, 100% { content: "..."; }
+}
+
+/* Text loop animation for one-at-a-time phrases */
+.text-loop-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.text-loop-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  animation: textLoop 18s ease-in-out infinite;
+}
+
+.text-loop-item {
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-loop-item p {
+  font-weight: 200;
+  letter-spacing: -0.01em;
+  transform: translateY(0);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+@keyframes textLoop {
+  0%, 16% {
+    transform: translateY(0);
+  }
+  20%, 36% {
+    transform: translateY(-2rem);
+  }
+  40%, 56% {
+    transform: translateY(-4rem);
+  }
+  60%, 76% {
+    transform: translateY(-6rem);
+  }
+  80%, 96% {
+    transform: translateY(-8rem);
+  }
+  100% {
+    transform: translateY(-10rem);
+  }
+}
+
+@layer base {
+  :root {
+    --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --font-sora: 'Sora', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  }
+  
+  body {
+    @apply bg-white text-black font-sans; /* Ensure base text is black and font is Inter */
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-sans);
+  }
+}
+
+.logo-text {
+  font-family: var(--font-sora);
+}
